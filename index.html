@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Health Assistant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container mx-auto p-4 max-w-4xl">
+        <!-- Header -->
+        <header class="text-center mb-6">
+            <img 
+                src="https://i.pinimg.com/736x/1f/3b/44/1f3b44c84f9b1d7e2568647fb80327be.jpg"
+                alt="AI Health Assistant Banner"
+                
+                onerror="this.onerror=null;"
+            >
+                
+            <h1 class="text-4xl font-bold text-blue-600">AI Health Assistant</h1>
+            <p class="text-md text-gray-600 mt-2">Your 24/7 guide to better health understanding.</p>
+        </header>
+
+        <!-- Disclaimer -->
+        <div class="disclaimer-light border-l-4 p-4 mb-6 rounded-md" role="alert">
+            <p class="font-bold">Important Disclaimer</p>
+            <p>This AI is for informational purposes only and is not a substitute for professional medical advice, diagnosis, or treatment. Always seek the advice of your physician or other qualified health provider with any questions you may have regarding a medical condition.</p>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="main-content p-6 rounded-2xl shadow-lg">
+            <!-- Tab Navigation -->
+            <div class="mb-4 border-b border-gray-200">
+                <nav class="flex space-x-4" aria-label="Tabs">
+                    <button id="tab-chat" class="tab-btn-active px-3 py-2 font-medium text-sm rounded-t-lg">
+                        Health Chat
+                    </button>
+                    <button id="tab-report" class="tab-btn-inactive px-3 py-2 font-medium text-sm rounded-t-lg hover:text-gray-700 hover:border-gray-300">
+                        Analyze Medical Report
+                    </button>
+                    <button id="tab-advisor" class="tab-btn-inactive px-3 py-2 font-medium text-sm rounded-t-lg hover:text-gray-700 hover:border-gray-300">
+                        Lifestyle Advisor
+                    </button>
+                </nav>
+            </div>
+
+            <!-- Chat Interface -->
+            <div id="chat-section">
+                <div id="chat-container" class="h-96 overflow-y-auto p-4 bg-gray-50 rounded-lg border border-gray-200 mb-4 flex flex-col space-y-4">
+                     <div class="flex justify-start">
+                        <div class="chat-bubble chat-bubble-ai p-3 rounded-lg">
+                            <p>Hello! How can I help you with your health questions today?</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex">
+                    <input type="text" id="chat-input" class="input-light flex-grow p-3 rounded-l-lg" placeholder="Ask a health question...">
+                    <button id="send-btn" class="btn-primary px-6 py-3 rounded-r-lg disabled:opacity-50">
+                        Send
+                    </button>
+                </div>
+            </div>
+
+            <!-- Report Analyzer Interface -->
+            <div id="report-section" class="hidden">
+                 <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
+                    <h3 class="font-semibold text-lg mb-2 text-gray-800">Paste Your Medical Report</h3>
+                    <p class="text-sm text-gray-600 mb-4">Paste the text from your medical report below. The AI will provide a simplified summary. Please do NOT include any personal identifying information.</p>
+                    <textarea id="report-input" class="input-light w-full h-48 p-3 rounded-lg" placeholder="Paste report text here..."></textarea>
+                    <button id="analyze-btn" class="mt-4 w-full btn-secondary px-6 py-3 rounded-lg disabled:opacity-50">
+                        Analyze Report
+                    </button>
+                </div>
+                <div id="analysis-output" class="mt-4"></div>
+            </div>
+
+            <!-- Lifestyle Advisor Interface -->
+            <div id="advisor-section" class="hidden">
+                <!-- Symptom Checker -->
+                <div class="p-4 bg-gray-50 rounded-lg border border-gray-200 mb-6">
+                    <h3 class="font-semibold text-lg mb-2 text-gray-800">
+                        <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" /></svg>
+                        Symptom Action Plan
+                    </h3>
+                    <p class="text-sm text-gray-600 mb-4">Describe your symptoms (e.g., "sore throat, mild fever, and headache for 2 days"), and the AI will suggest a general, safe action plan.</p>
+                    <textarea id="symptom-input" class="input-light w-full h-24 p-3 rounded-lg" placeholder="Describe your symptoms here..."></textarea>
+                    <button id="symptom-btn" class="mt-4 w-full btn-secondary px-6 py-3 rounded-lg disabled:opacity-50">
+                        Get Action Plan
+                    </button>
+                    <div id="symptom-output" class="mt-4"></div>
+                </div>
+
+                <!-- Meal Planner -->
+                <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
+                    <h3 class="font-semibold text-lg mb-2 text-gray-800">
+                         <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 9.75v4.5a2.25 2.25 0 01-2.25 2.25H15a2.25 2.25 0 01-2.25-2.25V9.75m4.5 4.5v4.5a2.25 2.25 0 01-2.25 2.25H9.75a2.25 2.25 0 01-2.25-2.25V14.25m5.25-4.5h-5.25a2.25 2.25 0 00-2.25 2.25v2.25c0 1.242 1.008 2.25 2.25 2.25H12m2.25-4.5h4.5a2.25 2.25 0 012.25 2.25v2.25a2.25 2.25 0 01-2.25 2.25H15m-3-4.5V3.75m0 6.75v-6.75a2.25 2.25 0 00-2.25-2.25H6.75A2.25 2.25 0 004.5 5.25v13.5A2.25 2.25 0 006.75 21h5.25a2.25 2.25 0 002.25-2.25v-2.25" /></svg>
+                         AI Meal Planner
+                    </h3>
+                    <p class="text-sm text-gray-600 mb-4">Tell us your dietary goals to get a sample 1-day meal plan.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <input type="text" id="meal-goal" class="input-light p-3 rounded-lg" placeholder="Primary Goal (e.g., Weight Loss)">
+                        <input type="text" id="meal-prefs" class="input-light p-3 rounded-lg" placeholder="Dietary Preferences (e.g., Vegetarian)">
+                        <input type="text" id="meal-dislikes" class="input-light p-3 rounded-lg" placeholder="Foods to Avoid (e.g., Nuts)">
+                        <input type="text" id="meal-conditions" class="input-light p-3 rounded-lg" placeholder="Health Conditions (e.g., Diabetes)">
+                    </div>
+                    <button id="meal-btn" class="mt-4 w-full btn-primary px-6 py-3 rounded-lg disabled:opacity-50">
+                       ✨ Generate Meal Plan
+                    </button>
+                    <div id="meal-output" class="mt-4"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
