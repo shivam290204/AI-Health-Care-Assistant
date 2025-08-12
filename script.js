@@ -172,7 +172,7 @@
         
         async function callGeminiAPI(prompt, history = [], systemInstruction = null) {
             console.log("Calling Gemini API...");
-            const apiKey = "AIzaSyA8xHDxhL3LmvxnwBG2k54b9uAJaW_plOA"; // Handled by environment
+            const apiKey = ""; // Handled by environment
             const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
             
             const payload = { 
@@ -204,4 +204,5 @@
         }
 
    
+
 
