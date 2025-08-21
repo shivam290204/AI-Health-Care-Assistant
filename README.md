@@ -1,8 +1,9 @@
+
 # AI Health Assistant 🩺
 
 
 An AI-powered health assistant designed to make complex medical information accessible. This web app simplifies medical reports, answers health questions, and provides safe, actionable advice with features like a symptom planner and meal generator. It empowers users to understand their health and take a more active role in their well-being.
-
+<img width="700" height="700" alt="Screenshot 2025-08-21 095202" src="https://github.com/user-attachments/assets/3b097bde-057f-4ba2-9fae-5c61f69527f8" />
 ## 🌟 Features
 
 This application is built as a single-page web app with several key features:
